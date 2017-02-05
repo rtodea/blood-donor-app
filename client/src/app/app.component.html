@@ -1,9 +1,18 @@
 <md-sidenav-container>
-  <md-toolbar color="primary">
+  <md-toolbar color="primary" class="md-elevation-z6">
     <span><md-icon>mood</md-icon></span>
-
     <span>{{title}}</span>
 
+    <span class="fill"></span>
+    <button md-button routerLink="/dashboard">
+      Home
+    </button>
+    <button md-button routerLink="/patient">
+      Patient
+    </button>
+    <button md-button routerLink="/donor">
+      Donor
+    </button>
     <button md-icon-button [md-menu-trigger-for]="menu">
       <md-icon>more_vert</md-icon>
     </button>
@@ -13,40 +22,7 @@
     <button md-menu-item>Option 2</button>
   </md-menu>
 
-  <md-card>
-    <button md-button>All</button>
-    <button md-raised-button>Of</button>
-    <button md-raised-button color="primary">The</button>
-    <button md-raised-button color="accent">Buttons</button>
-  </md-card>
+  <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
-  <md-card>
-    <md-grid-list cols="4" rowHeight="100px" >
-      <md-grid-tile *ngFor="let item of currentModels" >
-        <h3 md-line>{{item.name}}</h3>
-        <button md-icon-button (click)="showModelInfo(item)">
-          <md-icon>info</md-icon>
-        </button>
-
-      </md-grid-tile>
-    </md-grid-list>
-
-    <br>
-    <p>You selected model with id: <b>{{selectedModel.id}}</b></p>
-    <i>{{selectedModel.name}}</i>
-
-    <div>
-      Current models:
-      <template ngFor let-item [ngForOf]="currentModels">
-        <li>{{item.name}}</li>
-      </template>
-
-    </div>
-  </md-card>
-
-  <span class="done">
-    <button md-fab>
-      <md-icon>check circle</md-icon>
-    </button>
-  </span>
+  <router-outlet></router-outlet>
 </md-sidenav-container>
