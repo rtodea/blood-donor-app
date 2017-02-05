@@ -45,7 +45,7 @@ class AppBackend {
     // this._app.get('/', (_, res) => {
     //   res.sendFile('build/index.html');
     // });
-    this._app.use('/', express.static('build'));
+    this._app.use(express.static('build'));
   }
 
   _setupDbConnection() {
