@@ -16,6 +16,10 @@ const appRoutes: Routes = [
     component: DonorComponent
   },
   {
+    path: 'donor/:id',
+    component: DonorComponent
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent
   },
