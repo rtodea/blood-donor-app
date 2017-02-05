@@ -10,6 +10,7 @@ import { ModelEventService } from './model-event.service';
 export class AppComponent implements OnInit {
   currentModels;
   title = 'Blood Donors App';
+  selectedModel: any = {};
 
   constructor(public modelEventService: ModelEventService) {}
 
@@ -17,5 +18,9 @@ export class AppComponent implements OnInit {
     this.modelEventService.currentModels.subscribe((modelList) => {
       this.currentModels = modelList;
     });
+  }
+
+  showModelInfo(modelEvent): void {
+    this.selectedModel = modelEvent;
   }
 }

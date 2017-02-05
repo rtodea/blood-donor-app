@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ModelEventService } from './model-event.service';
 import { SocketService } from './socket.service';
+import { MaterialModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { SocketService } from './socket.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot()
   ],
   providers: [
     SocketService,
