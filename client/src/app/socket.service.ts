@@ -21,9 +21,11 @@ export class SocketService {
   ];
 
   public static MODEL_CREATE = 'create';
+  public static MODEL_UPDATE = 'update';
   public static MODEL_DELETE = 'delete';
   public static MODEL_EVENTS = [
     SocketService.MODEL_CREATE,
+    SocketService.MODEL_UPDATE,
     SocketService.MODEL_DELETE
   ];
 

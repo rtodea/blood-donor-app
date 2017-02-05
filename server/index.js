@@ -25,17 +25,18 @@ class AppBackend {
     this._addLogger();
     this._addParserSupport();
 
+    this._httpServer = http.Server(this._app);
+    this._socket = this._setupSocketIo();
+
     this._serveBuildFolder();
     this._createApiEndpoints();
 
     this._setupDbConnection();
-    this._httpServer = http.Server(this._app);
-    this._setupSocketIo();
   }
 
   _createApiEndpoints() {
     const router = express.Router();
-    registerRoutes(router);
+    registerRoutes(router, this._socket);
     this._app.use('/api', router);
   }
 
@@ -53,7 +54,7 @@ class AppBackend {
   }
 
   _setupSocketIo() {
-    socketIo.init(this._httpServer);
+    return socketIo.init(this._httpServer);
   }
 
   _addLogger() {
