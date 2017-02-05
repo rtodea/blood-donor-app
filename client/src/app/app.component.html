@@ -1,23 +1,52 @@
-<md-toolbar>{{title}}</md-toolbar>
+<md-sidenav-container>
+  <md-toolbar color="primary">
+    <span><md-icon>mood</md-icon></span>
 
-<md-grid-list cols="4" rowHeight="100px" >
-  <md-grid-tile *ngFor="let item of currentModels" >
-    <h3 md-line>{{item.name}}</h3>
-    <button md-icon-button (click)="showModelInfo(item)">
-      <md-icon>info</md-icon>
+    <span>{{title}}</span>
+
+    <button md-icon-button [md-menu-trigger-for]="menu">
+      <md-icon>more_vert</md-icon>
     </button>
+  </md-toolbar>
+  <md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item>Option 1</button>
+    <button md-menu-item>Option 2</button>
+  </md-menu>
 
-  </md-grid-tile>
-</md-grid-list>
+  <md-card>
+    <button md-button>All</button>
+    <button md-raised-button>Of</button>
+    <button md-raised-button color="primary">The</button>
+    <button md-raised-button color="accent">Buttons</button>
+  </md-card>
 
-<br>
-<p>You selected model with id: <b>{{selectedModel.id}}</b></p>
-<i>{{selectedModel.name}}</i>
+  <md-card>
+    <md-grid-list cols="4" rowHeight="100px" >
+      <md-grid-tile *ngFor="let item of currentModels" >
+        <h3 md-line>{{item.name}}</h3>
+        <button md-icon-button (click)="showModelInfo(item)">
+          <md-icon>info</md-icon>
+        </button>
 
-<div>
-  Current models:
-  <template ngFor let-item [ngForOf]="currentModels">
-    <li>{{item.name}}</li>
-  </template>
+      </md-grid-tile>
+    </md-grid-list>
 
-</div>
+    <br>
+    <p>You selected model with id: <b>{{selectedModel.id}}</b></p>
+    <i>{{selectedModel.name}}</i>
+
+    <div>
+      Current models:
+      <template ngFor let-item [ngForOf]="currentModels">
+        <li>{{item.name}}</li>
+      </template>
+
+    </div>
+  </md-card>
+
+  <span class="done">
+    <button md-fab>
+      <md-icon>check circle</md-icon>
+    </button>
+  </span>
+</md-sidenav-container>
