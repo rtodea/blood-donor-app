@@ -5,15 +5,16 @@ const MONGOOSE_CONNECTED = 'connected';
 const MONGOOSE_DISCONNECTED = 'disconnected';
 const MONGOOSE_ERROR = 'error';
 
-const APP_INTERRUPTED = 'SIGINT';
-const APP_TERMINATED = 'SIGTERM';
-const APP_RESTARTED = 'SIGHUP';
+// TODO: revisit this
+// const APP_INTERRUPTED = 'SIGINT';
+// const APP_TERMINATED = 'SIGTERM';
+// const APP_RESTARTED = 'SIGHUP';
 
-const APP_SIGNALS = [
-  APP_INTERRUPTED,
-  APP_TERMINATED,
-  APP_RESTARTED
-];
+// const APP_SIGNALS = [
+//   APP_INTERRUPTED,
+//   APP_TERMINATED,
+//   APP_RESTARTED
+// ];
 
 
 function init() {
@@ -22,11 +23,11 @@ function init() {
     logEvent(connection, event)
   });
 
-  APP_SIGNALS.forEach((event) => {
-    process.on(event, () => closeConnection(connection, () => {
-      process.exit(0);
-    }));
-  });
+  // APP_SIGNALS.forEach((event) => {
+  //   process.on(event, () => closeConnection(connection, () => {
+  //     process.exit(0);
+  //   }));
+  // });
 
   mongoose.connect(config.mongoDb.uri);
 }

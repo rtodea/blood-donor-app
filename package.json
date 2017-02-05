@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
+    "build-watch": "ng build -w",
     "start-dev": "ng serve",
     "start": "node server.js",
     "client-unit-test": "ng test",
@@ -49,6 +50,7 @@
     "morgan": "^1.7.0",
     "rxjs": "^5.0.1",
     "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
@@ -57,6 +59,7 @@
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
+    "@types/socket.io-client": "^1.4.29",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",

@@ -21,7 +21,6 @@ class AppBackend {
 
   init() {
     this._app = express();
-    this._httpServer = http.createServer(this._app);
 
     this._addLogger();
     this._addParserSupport();
@@ -30,6 +29,7 @@ class AppBackend {
     this._createApiEndpoints();
 
     this._setupDbConnection();
+    this._httpServer = http.Server(this._app);
     this._setupSocketIo();
   }
 
@@ -42,7 +42,10 @@ class AppBackend {
   _serveBuildFolder() {
     // TODO: remove this when introducing something
     // that will serve the static content (e.g. nginx)
-    this._app.use(express.static('build'));
+    // this._app.get('/', (_, res) => {
+    //   res.sendFile('build/index.html');
+    // });
+    this._app.use('/', express.static('build'));
   }
 
   _setupDbConnection() {
@@ -77,7 +80,7 @@ class AppBackend {
   }
 
   start() {
-    return this._app.listen(this.port, () => {
+    return this._httpServer.listen(this.port, () => {
       console.log('Backend services started and listening at port:', this.port);
     });
   }

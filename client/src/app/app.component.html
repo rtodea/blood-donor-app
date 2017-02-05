@@ -1,3 +1,10 @@
 <h1>
   {{title}}
 </h1>
+<div>
+  Current models:
+  <template ngFor let-item [ngForOf]="currentModels">
+    <li>{{item.name}}</li>
+  </template>
+
+</div>

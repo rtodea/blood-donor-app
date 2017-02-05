@@ -1,9 +1,10 @@
-function registerRoutes(appRouter) {
+function registerRoutes(router) {
   // TODO: add model routes
-  appRouter.route('/')
-    .get((_, res) => {
-      res.json({message: 'API v1'});
-    })
+  router.get('/', (_, res) => (res.json({message: 'API v1'})));
+
+  router.post('/event', () => {
+
+  });
 }
 
 
