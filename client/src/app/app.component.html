@@ -1,28 +1,27 @@
-<md-sidenav-container>
-  <md-toolbar color="primary" class="md-elevation-z6">
-    <span><md-icon>mood</md-icon></span>
-    <span>{{title}}</span>
+<md-toolbar color="primary" class="md-elevation-z6">
+  <span><md-icon>mood</md-icon></span>
+  <span>{{title}}</span>
 
-    <span class="fill"></span>
-    <button md-button routerLink="/dashboard">
-      Home
-    </button>
-    <button md-button routerLink="/patient">
-      Patient
-    </button>
-    <button md-button routerLink="/donor">
-      Donor
-    </button>
-    <button md-icon-button [md-menu-trigger-for]="menu">
-      <md-icon>more_vert</md-icon>
-    </button>
-  </md-toolbar>
-  <md-menu x-position="before" #menu="mdMenu">
-    <button md-menu-item>Option 1</button>
-    <button md-menu-item>Option 2</button>
-  </md-menu>
+  <span class="fill"></span>
+  <button md-button routerLink="/dashboard">
+    Home
+  </button>
+  <button md-button routerLink="/patient">
+    Patient
+  </button>
+  <button md-button routerLink="/donor">
+    Donor
+  </button>
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+</md-toolbar>
+<md-menu x-position="before" #menu="mdMenu">
+  <button md-menu-item>Option 1</button>
+  <button md-menu-item>Option 2</button>
+</md-menu>
 
-  <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
+<md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
-  <router-outlet></router-outlet>
-</md-sidenav-container>
+<router-outlet></router-outlet>
+<app-esri-map></app-esri-map>

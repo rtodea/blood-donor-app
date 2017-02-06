@@ -12,6 +12,8 @@ import { DonorComponent } from './donor/donor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MapService } from './map.service';
+import { EsriMapModule } from './esri-map/esri-map.module';
 
 
 @NgModule({
@@ -27,11 +29,13 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    EsriMapModule
   ],
   providers: [
     SocketService,
-    ModelEventService
+    ModelEventService,
+    MapService
   ],
   bootstrap: [AppComponent]
 })

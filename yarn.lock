@@ -103,7 +103,7 @@
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.6.tgz#17236b858f5730eed257d93e90bcbae45e21e0fe"
 
-"@angular/core@^2.3.1":
+"@angular/core@^2.1.0", "@angular/core@^2.3.1":
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.6.tgz#4abec78ee035b27e8192acf70409c3dbca24e829"
 
@@ -149,6 +149,10 @@
     loader-utils "^0.2.16"
     magic-string "^0.16.0"
     source-map "^0.5.6"
+
+"@types/arcgis-js-api@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@types/arcgis-js-api/-/arcgis-js-api-4.2.0.tgz#a54da1903d214a03e5aa6f59d1935abf439c11ff"
 
 "@types/jasmine@2.5.38", "@types/jasmine@^2.5.36":
   version "2.5.38"
@@ -247,6 +251,28 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
+
+angular2-esri-loader@^0.1.10, angular2-esri-loader@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/angular2-esri-loader/-/angular2-esri-loader-0.1.11.tgz#168b3521f6a4fc65075a9750f77308c9c497bb88"
+  dependencies:
+    "@angular/core" "^2.1.0"
+    esri-loader "^0.1.2"
+    rxjs "5.0.0-beta.12"
+    zone.js "^0.6.23"
+
+angular2-esri4-components@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/angular2-esri4-components/-/angular2-esri4-components-0.4.3.tgz#3229680210b74df62782daa90fa08978a5c9f815"
+  dependencies:
+    "@angular/common" "^2.3.1"
+    "@angular/compiler" "^2.3.1"
+    "@angular/compiler-cli" "^2.3.1"
+    "@angular/core" "^2.3.1"
+    "@angular/platform-browser" "^2.3.1"
+    angular2-esri-loader "^0.1.10"
+    rxjs "^5.0.1"
+    zone.js "^0.7.2"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -1683,6 +1709,10 @@ escodegen@1.8.x:
 esprima@2.7.x, esprima@^2.6.0, esprima@^2.7.1:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
+
+esri-loader@^0.1.2:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/esri-loader/-/esri-loader-0.1.3.tgz#c2dc736c072a852f7dc3f71f6cae13acfbf3b51c"
 
 estraverse@^1.9.1:
   version "1.9.3"
@@ -4540,6 +4570,12 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
+rxjs@5.0.0-beta.12:
+  version "5.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-beta.12.tgz#cdfde2d8c4639d20ae7794bff8fddf32da7ad337"
+  dependencies:
+    symbol-observable "^1.0.1"
+
 rxjs@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.1.0.tgz#0aa9018b7f440b505fa42bd742b6738be550e720"
@@ -5721,6 +5757,10 @@ yargs@~3.10.0:
 yeast@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
+
+zone.js@^0.6.23:
+  version "0.6.26"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.6.26.tgz#067c13b8b80223a89b62e9dc82680f09762c4636"
 
 zone.js@^0.7.2:
   version "0.7.6"

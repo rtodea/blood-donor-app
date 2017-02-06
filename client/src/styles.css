@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+/* ArcGIS Styles */
+@import '//js.arcgis.com/4.2/esri/css/main.css';
+
 
 body {
   margin: 0;
@@ -23,3 +26,15 @@ md-toolbar-row {
   right: 20px;
   color: white;
 }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
