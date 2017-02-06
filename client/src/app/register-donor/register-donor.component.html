@@ -1,7 +1,17 @@
 <div class="container">
   <div [hidden]="submitted">
-    <h1>Donor Registration Form</h1>
+    <h3>Donor Registration Form</h3>
     <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onSubmit()">
+      Locate yourself using the map via:
+      <ul>
+        <li>auto locate <span class="esri-icon esri-icon-locate"></span></li>
+        <li>typing the address <span class="esri-icon-search"></span></li>
+        <li>clicking anywhere on the map</li>
+      </ul>
+      <p>
+        Registered Location: {{ currentLong }}, {{ currentLat }}
+      </p>
+
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input

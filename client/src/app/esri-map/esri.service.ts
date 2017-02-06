@@ -13,6 +13,9 @@ export class EsriService {
     Search: null,
     Locate: null
   };
+  tasks = {
+    Locator: null
+  };
 
   constructor(private esriLoader: EsriLoaderService) {
     this.isLoaded = this.load();
@@ -29,12 +32,14 @@ export class EsriService {
         'esri/views/MapView',
         'esri/widgets/Search',
         'esri/widgets/Locate',
+        'esri/tasks/Locator',
         'dojo/domReady!'
-      ]).then(([Map, MapView, Search, Locate]) => {
+      ]).then(([Map, MapView, Search, Locate, Locator]) => {
         this.Map = Map;
         this.views.MapView = MapView;
         this.widgets.Search = Search;
         this.widgets.Locate = Locate;
+        this.tasks.Locator = Locator;
       });
     });
   }

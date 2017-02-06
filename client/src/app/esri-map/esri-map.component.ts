@@ -12,6 +12,7 @@ export class EsriMapComponent implements OnInit {
 
   mapView: __esri.MapView;
   map: __esri.Map;
+  locator: __esri.Locator;
 
   constructor(private esriService: EsriService) { }
 
@@ -31,8 +32,15 @@ export class EsriMapComponent implements OnInit {
       center: [15, 65]  // Sets the center point of view in lon/lat
     });
 
+    this.initReverseLocator();
     this.addMapWidgets();
     this.registerClickHandler();
+  }
+
+  private initReverseLocator() {
+    this.locator = new this.esriService.tasks.Locator({
+      url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer'
+    });
   }
 
   private addMapWidgets() {
@@ -59,11 +67,19 @@ export class EsriMapComponent implements OnInit {
       const lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
       const lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
 
+      this.mapView.popup.content = '';
       this.mapView.popup.open({
         // Set the popup's title to the coordinates of the clicked location
         title: `You will be registered at this location: [${lon}, ${lat}]`,
         location: event.mapPoint // Set the location of the popup to the clicked location
       });
+      this.locator.locationToAddress(event.mapPoint)
+        .then((response) => {
+          this.mapView.popup.content = response.address.Match_addr;
+        })
+        .otherwise(() => {
+          this.mapView.popup.content = 'No address was found for this location';
+        });
     });
   }
 }
