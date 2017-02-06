@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { RegisterDonorComponent } from '../register-donor/register-donor.component';
+import { UserTypeToggleComponent } from '../user-type-toggle/user-type-toggle.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +14,6 @@ export class DashboardComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(RegisterDonorComponent);
+    this.dialog.open(UserTypeToggleComponent, { disableClose: true });
   }
 }

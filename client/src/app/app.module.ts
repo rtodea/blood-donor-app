@@ -13,19 +13,20 @@ import { DonorComponent } from './donor/donor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MapService } from './map.service';
 import { EsriMapModule } from './esri-map/esri-map.module';
 import { RegisterDonorComponent } from './register-donor/register-donor.component';
+import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    UserTypeToggleComponent,
     DashboardComponent,
     PatientComponent,
     DonorComponent,
-    RegisterDonorComponent
+    RegisterDonorComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +39,11 @@ import { RegisterDonorComponent } from './register-donor/register-donor.componen
   ],
   providers: [
     SocketService,
-    ModelEventService,
-    MapService
+    ModelEventService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserTypeToggleComponent
+  ]
 })
 export class AppModule { }

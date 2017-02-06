@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ModelEventService } from './model-event.service';
-import { MapService } from './map.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'Blood Donors App';
   selectedModel: any = {};
 
-  constructor(public modelEventService: ModelEventService, mapService: MapService) {}
+  constructor(public modelEventService: ModelEventService) {}
 
   ngOnInit(): void {
     this.modelEventService.currentModels.subscribe((modelList) => {
