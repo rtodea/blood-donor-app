@@ -1,6 +1,18 @@
 <h1 md-dialog-title>Choose your role</h1>
-<md-dialog-content>Helping patients world wide to find blood donors near them</md-dialog-content>
+<md-dialog-content>
+  <p>Help patients world wide to find blood donors near them.</p>
+
+  <p>As a <em>donor</em>, you locate yourself using the map by clicking anywhere on the map.
+  <p>For quick navigation, use:
+    <ul>
+      <li><span class="esri-icon esri-icon-locate"></span> auto locate</li>
+      <li><span class="esri-icon-search"></span> typing the address </li>
+    </ul>
+
+  <p>As a <em>patient</em> you can see the current donors as pins on the map.
+  <p>Click on any pin to see the contact info.
+</md-dialog-content>
 <md-dialog-actions>
-  <button md-raised-button (click)="dialogRef.close()" color="primary" routerLink="/patient">Patient</button>
-  <button md-raised-button (click)="dialogRef.close()" color="accent" routerLink="/donor">Donor</button>
+  <button md-raised-button (click)="dialogRef.close()" color="primary" routerLink="/donor">Donor</button>
+  <button md-raised-button (click)="dialogRef.close()" color="accent" routerLink="/patient">Patient</button>
 </md-dialog-actions>
