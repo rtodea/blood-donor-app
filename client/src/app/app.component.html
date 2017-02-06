@@ -12,6 +12,9 @@
   <button md-button routerLink="/donor">
     Donor
   </button>
+  <button md-button routerLink="/register">
+    Register
+  </button>
   <button md-icon-button [md-menu-trigger-for]="menu">
     <md-icon>more_vert</md-icon>
   </button>
@@ -24,4 +27,3 @@
 <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
 <router-outlet></router-outlet>
-<app-esri-map></app-esri-map>

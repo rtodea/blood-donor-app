@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ModelEventService } from './model-event.service';
@@ -14,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app-routing.module';
 import { MapService } from './map.service';
 import { EsriMapModule } from './esri-map/esri-map.module';
+import { RegisterDonorComponent } from './register-donor/register-donor.component';
 
 
 @NgModule({
@@ -22,12 +24,14 @@ import { EsriMapModule } from './esri-map/esri-map.module';
     PageNotFoundComponent,
     DashboardComponent,
     PatientComponent,
-    DonorComponent
+    DonorComponent,
+    RegisterDonorComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     MaterialModule.forRoot(),
     AppRoutingModule,
     EsriMapModule

@@ -5,6 +5,7 @@ import { PatientComponent } from './patient/patient.component';
 import { DonorComponent } from './donor/donor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegisterDonorComponent } from './register-donor/register-donor.component';
 
 const appRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ const appRoutes: Routes = [
   {
     path: 'donor/:id',
     component: DonorComponent
+  },
+  {
+    path: 'register',
+    component: RegisterDonorComponent
   },
   {
     path: 'dashboard',

@@ -32,6 +32,7 @@ export class EsriMapComponent implements OnInit {
     });
 
     this.addMapWidgets();
+    this.registerClickHandler();
   }
 
   private addMapWidgets() {
@@ -48,6 +49,21 @@ export class EsriMapComponent implements OnInit {
     this.mapView.ui.add(locateBtn, {
       position: 'top-left',
       index: 1
+    });
+  }
+
+  registerClickHandler() {
+    this.mapView.on('click', (event) => {
+      // Get the coordinates of the click on the view
+      // around the decimals to 3 decimals
+      const lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
+      const lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
+
+      this.mapView.popup.open({
+        // Set the popup's title to the coordinates of the clicked location
+        title: `You will be registered at this location: [${lon}, ${lat}]`,
+        location: event.mapPoint // Set the location of the popup to the clicked location
+      });
     });
   }
 }
