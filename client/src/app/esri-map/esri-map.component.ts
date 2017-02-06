@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild, ElementRef, Output } from '@angular/core';
 
 import { EsriService } from './esri.service';
 
@@ -9,6 +9,8 @@ import { EsriService } from './esri.service';
 })
 export class EsriMapComponent implements OnInit {
   @ViewChild('map') mapEl: ElementRef;
+
+  @Output() onMapEvent = new EventEmitter<any>();
 
   mapView: __esri.MapView;
   map: __esri.Map;
@@ -61,24 +63,15 @@ export class EsriMapComponent implements OnInit {
   }
 
   registerClickHandler() {
-    this.mapView.on('click', (event) => {
-      // Get the coordinates of the click on the view
-      // around the decimals to 3 decimals
-      const lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
-      const lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
-
-      this.mapView.popup.content = '';
-      this.mapView.popup.open({
-        // Set the popup's title to the coordinates of the clicked location
-        title: `You will be registered at this location: [${lon}, ${lat}]`,
-        location: event.mapPoint // Set the location of the popup to the clicked location
-      });
-      this.locator.locationToAddress(event.mapPoint)
+    this.mapView.on('click', ({ mapPoint }) => {
+      this.locator.locationToAddress(mapPoint)
         .then((response) => {
           this.mapView.popup.content = response.address.Match_addr;
+          this.onMapEvent.emit({ eventType: 'click', address: response.address, mapPoint });
         })
         .otherwise(() => {
           this.mapView.popup.content = 'No address was found for this location';
+          this.onMapEvent.emit({ eventType: 'click', mapPoint });
         });
     });
   }

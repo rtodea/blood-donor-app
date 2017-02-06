@@ -7,7 +7,7 @@ import { UserTypeToggleComponent } from '../user-type-toggle/user-type-toggle.co
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-  constructor(public dialog: MdDialog) {}
+  constructor(private dialog: MdDialog) {}
 
   ngOnInit(): void {
     this.openDialog();

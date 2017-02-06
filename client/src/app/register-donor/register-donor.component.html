@@ -3,7 +3,13 @@
     <h3>Donor Registration Form</h3>
     <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onSubmit()">
       <p>
-        Registered Location: {{ currentLong }}, {{ currentLat }}
+        Registered Location: [ Lon: {{ locationData.longitude }}, Lat: {{ locationData.latitude }} ]
+      </p>
+      <p *ngIf="!locationData.address">
+        Could not determine address.
+      </p>
+      <p *ngIf="locationData.address">
+        Address: {{ locationData.address.Address }}, {{ locationData.address.City }}
       </p>
 
       <div class="form-group">
@@ -86,11 +92,21 @@
         [disabled]="!donorForm.valid">
         Submit
       </button>
+      <button
+        md-raised-button
+        (click)="dialogRef.close()">
+        Cancel
+      </button>
     </form>
   </div>
 
   <div [hidden]="!submitted">
-    Submitted values. Please follow this link to update your values {{ updateLink }}.
+    <p>Submitted values. Please follow this link to update your values {{ updateLink }}.</p>
+    <button
+      md-raised-button
+      (click)="dialogRef.close(donor)">
+      Close
+    </button>
   </div>
 
 </div>

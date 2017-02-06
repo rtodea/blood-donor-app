@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Donor } from '../shared/donor';
 import { validateEmail, validateContactNumber } from './register-donor.validations';
+import { MdDialogRef } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,6 @@ import { validateEmail, validateContactNumber } from './register-donor.validatio
   templateUrl: './register-donor.component.html'
 })
 export class RegisterDonorComponent implements OnInit {
-
   bloodGroups = ['O−', 'A−', 'B−', 'AB−', 'O+', 'A+', 'B+', 'AB+'];
 
   submitted = false;
@@ -19,6 +19,7 @@ export class RegisterDonorComponent implements OnInit {
   donor = new Donor(null, '', '', '', '', '');
   donorForm: FormGroup;
   updateLink: 'N/A';
+  locationData;
 
   formErrors = {
     firstName: '',
@@ -42,7 +43,7 @@ export class RegisterDonorComponent implements OnInit {
     bloodGroup: {required: 'Blood group is required.'}
   };
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, public dialogRef: MdDialogRef<RegisterDonorComponent>) {}
 
   ngOnInit(): void {
     this.buildForm();
