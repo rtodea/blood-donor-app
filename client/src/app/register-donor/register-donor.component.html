@@ -35,13 +35,13 @@
         <label for="contactNo">Contact Number (including international prefix)</label>
 
         <input
-          type="number"
+          type="text"
           id="contactNo"
           class="form-control"
           formControlName="contactNo"
           required >
 
-        <div *ngIf="formErrors.contactNo" class="alert alert-danger">
+        <div *ngIf="donorForm.controls['contactNo'].touched && formErrors.contactNo" class="alert alert-danger">
           {{ formErrors.contactNo }}
         </div>
       </div>
@@ -56,7 +56,7 @@
           formControlName="email"
           required >
 
-        <div *ngIf="formErrors.email" class="alert alert-danger">
+        <div *ngIf="donorForm.controls['email'].touched && formErrors.email" class="alert alert-danger">
           {{ formErrors.email }}
         </div>
       </div>
@@ -86,7 +86,7 @@
   </div>
 
   <div [hidden]="!submitted">
-    Submitted values. Please follow this link to update your values {{updateLink}}.
+    Submitted values. Please follow this link to update your values {{ updateLink }}.
   </div>
 
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Donor } from '../shared/donor';
+import { validateEmail, validateContactNumber } from './register-donor.validations';
 
 @Component({
   moduleId: module.id,
@@ -10,13 +11,14 @@ import { Donor } from '../shared/donor';
 })
 export class RegisterDonorComponent implements OnInit {
 
-  bloodGroups = ['O−',	'A−',	'B−',	'AB−',	'O+',	'A+',	'B+',	'AB+'];
+  bloodGroups = ['O−', 'A−', 'B−', 'AB−', 'O+', 'A+', 'B+', 'AB+'];
 
   submitted = false;
   active = true;
 
   donor = new Donor(null, '', '', '', '', '');
   donorForm: FormGroup;
+  updateLink: 'N/A';
 
   formErrors = {
     firstName: '',
@@ -27,11 +29,17 @@ export class RegisterDonorComponent implements OnInit {
   };
 
   validationMessages = {
-    firstName: { required: 'First name is required.'},
-    lastName: { required: 'Last name is required.'},
-    contactNo: { required: 'Contact number is required.'},
-    email: { required: 'Email address is required.'},
-    bloodGroup: { required: 'Blood group is required.'}
+    firstName: {required: 'First name is required.'},
+    lastName: {required: 'Last name is required.'},
+    contactNo: {
+      required: 'Contact number is required.',
+      validateContactNumber: 'Contact number is not valid'
+    },
+    email: {
+      required: 'Email address is required.',
+      validateEmail: 'Email address is not valid'
+    },
+    bloodGroup: {required: 'Blood group is required.'}
   };
 
   constructor(private formBuilder: FormBuilder) {}
@@ -49,8 +57,14 @@ export class RegisterDonorComponent implements OnInit {
     this.donorForm = this.formBuilder.group({
       'firstName': [this.donor.firstName, [Validators.required]],
       'lastName': [this.donor.lastName, [Validators.required]],
-      'contactNo': [this.donor.contactNo, [Validators.required]],
-      'email': [this.donor.email, [Validators.required]],
+      'contactNo': [this.donor.contactNo, [
+        Validators.required,
+        validateContactNumber
+      ]],
+      'email': [this.donor.email, [
+        Validators.required,
+        validateEmail
+      ]],
       'bloodGroup': [this.donor.bloodGroup, [Validators.required]],
     });
     this.donorForm.valueChanges
@@ -59,7 +73,9 @@ export class RegisterDonorComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    if (!this.donorForm) { return; }
+    if (!this.donorForm) {
+      return;
+    }
     const form = this.donorForm;
     Object.keys(this.formErrors).forEach((field) => {
       // clear previous error message (if any)
