@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+import { EsriService } from './esri.service';
 
 @Component({
   selector: 'app-esri-map',
@@ -6,36 +8,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./esri-map.component.css']
 })
 export class EsriMapComponent implements OnInit {
-  mapProperties: __esri.MapProperties = {
-    basemap: 'dark-gray'
-  };
-  mapViewProperties: __esri.MapViewProperties = {
-    center: [-118, 34.5],
-    zoom: 8,
-  };
-  map: __esri.Map;
+  @ViewChild('map') mapEl: ElementRef;
+
   mapView: __esri.MapView;
-  Search: __esri.Search;
+  map: __esri.Map;
 
-  constructor() { }
+  constructor(private esriService: EsriService) { }
 
-  ngOnInit() { }
-
-  onMapInit(mapInfo: {map: __esri.Map, mapView: __esri.MapView}) {
-    this.map = mapInfo.map;
-    this.mapView = mapInfo.mapView;
-    this.addWidgets();
+  ngOnInit() {
+    // only load the ArcGIS API for JavaScript when this component is loaded
+    return this.esriService.isLoaded.then(() => {
+      this.create();
+    });
   }
 
-  private addWidgets() {
-    this.addSearchWidget();
+  private create() {
+    this.map = new this.esriService.Map({ basemap: 'streets' });
+    this.mapView = new this.esriService.views.MapView({
+      container: this.mapEl.nativeElement.id,
+      map: this.map,
+      zoom: 4,
+      center: [15, 65]  // Sets the center point of view in lon/lat
+    });
+
+    this.addMapWidgets();
   }
 
-  private addSearchWidget() {
-    console.log(this.Search);
-    // this.mapView.ui.add(new Search({ view: this.mapView }), {
-    //   position: 'top-left',
-    //   index: 0
-    // });
+  private addMapWidgets() {
+    const searchWidget = new this.esriService.widgets.Search({ view: this.mapView });
+
+    this.mapView.ui.add(searchWidget, {
+      position: 'top-left',
+      index: 0
+    });
+
+    const locateBtn = new this.esriService.widgets.Locate({ view: this.mapView });
+
+    // Add the locate widget to the top left corner of the view
+    this.mapView.ui.add(locateBtn, {
+      position: 'top-left',
+      index: 1
+    });
   }
 }
