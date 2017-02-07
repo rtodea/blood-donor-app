@@ -6,8 +6,12 @@ import { MaterialModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ModelEventService } from './model-event.service';
-import { SocketService } from './socket.service';
+
+import { SocketService } from './shared/socket.service';
+import { ModelEventService } from './shared/model-event.service';
+import { ModelService } from './shared/model.service';
+import { DonorService } from './shared/donor.service';
+
 import { PatientComponent } from './patient/patient.component';
 import { DonorComponent } from './donor/donor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -39,7 +43,9 @@ import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.com
   ],
   providers: [
     SocketService,
-    ModelEventService
+    ModelEventService,
+    ModelService,
+    DonorService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

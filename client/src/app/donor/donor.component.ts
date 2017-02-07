@@ -28,11 +28,14 @@ export class DonorComponent implements OnInit {
 
   openDialog(eventData) {
     const dialogRef = this.dialog.open(RegisterDonorComponent, { disableClose: true });
-    dialogRef.componentInstance.locationData = {
-      address: eventData.address,
+    const locatedData = eventData.address || {};
+    Object.assign(dialogRef.componentInstance.donor, {
+      street: locatedData.Address,
+      city: locatedData.City,
+      countryCode: locatedData.CountryCode,
       latitude: eventData.mapPoint.latitude,
       longitude: eventData.mapPoint.longitude
-    };
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);

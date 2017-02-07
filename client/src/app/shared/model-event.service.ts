@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { SocketService } from './socket.service';
-import ModelEvent from '../models/model-event.model';
+import ModelEvent from '../../models/model-event.model';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
-
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ModelEventService {

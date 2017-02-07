@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModelEventService } from './model-event.service';
+import { ModelEventService } from './shared/model-event.service';
 
 @Component({
   selector: 'app-root',

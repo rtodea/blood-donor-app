@@ -2,6 +2,7 @@ const R = require('ramda');
 const path = require('path')
 
 const ModelEvent = require('./models/model-event');
+const Donor = require('./models/donor');
 
 function dbModelToRestModel(persistedData, modelFields) {
   // We do not want the internals of MongoDB item to be exposed via REST endpoint
@@ -94,11 +95,15 @@ function registerRestEndpoints(router, resourceName, modelName, modelFields, Mod
 function registerRoutes(router, socket) {
   router.get('/', (_, res) => (res.json({message: 'API v1'})));
 
-  router.post('/event', () => {
-  });
-
   // TODO: add model routes
+  // TODO: remove this
   registerRestEndpoints(router, 'model-event', ModelEvent.modelName, ['name'], ModelEvent, socket);
+
+  // TODO: think of a better way to define the model fields accessible via REST
+  registerRestEndpoints(router, 'donor', Donor.modelName, [
+    'firstName', 'lastName', 'contactNo', 'email', 'bloodGroup',
+    'longitude', 'latitude', 'ip', 'countryCode', 'street', 'city'
+  ], Donor, socket);
 
   registerMapEndpoints(router);
 }

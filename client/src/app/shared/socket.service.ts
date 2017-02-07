@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import * as io from 'socket.io-client';
 
-import ModelEvent from '../models/model-event.model';
+import ModelEvent from '../../models/model-event.model';
 
 declare var window: any;
 

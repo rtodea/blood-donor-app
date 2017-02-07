@@ -3,13 +3,13 @@
     <h3>Donor Registration Form</h3>
     <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onSubmit()">
       <p>
-        Registered Location: [ Lon: {{ locationData.longitude }}, Lat: {{ locationData.latitude }} ]
+        Registered Location: [ Lon: {{ donor.longitude }}, Lat: {{ donor.latitude }} ]
       </p>
-      <p *ngIf="!locationData.address">
+      <p *ngIf="!donor.street">
         Could not determine address.
       </p>
-      <p *ngIf="locationData.address">
-        Address: {{ locationData.address.Address }}, {{ locationData.address.City }}
+      <p *ngIf="donor.street">
+        Address: {{ donor.street}}, {{ donor.city }}
       </p>
 
       <div class="form-group">
@@ -101,7 +101,12 @@
   </div>
 
   <div [hidden]="!submitted">
-    <p>Submitted values. Please follow this link to update your values {{ updateLink }}.</p>
+    <p>Thank you for registering as a donor!</p>
+    <p>To update or delete your registration, please follow this link:
+      <!-- TODO: fix me -->
+      <!--<a [routerLink]="['/donor', donor.id]">{{ createUpdateLink(donor.id) }}</a>.-->
+      {{ createUpdateLink(donor.id) }}
+    </p>
     <button
       md-raised-button
       (click)="dialogRef.close(donor)">

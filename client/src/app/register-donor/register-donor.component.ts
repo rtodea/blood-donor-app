@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Donor } from '../shared/donor';
 import { validateEmail, validateContactNumber } from './register-donor.validations';
 import { MdDialogRef } from '@angular/material';
+import { DonorService } from '../shared/donor.service';
 
 @Component({
   moduleId: module.id,
@@ -16,11 +17,22 @@ export class RegisterDonorComponent implements OnInit {
   submitted = false;
   active = true;
 
-  donor = new Donor(null, '', '', '', '', '');
-  donorForm: FormGroup;
-  updateLink: 'N/A';
-  locationData;
+  donor = new Donor(
+    null, // id
+    '', // firstName
+    '', // lastName
+    '', // contactNo
+    '', // email
+    '', // bloodGroup
+    0, // longitude
+    0, // latitude
+    '', // ip
+    '', // countryCode
+    '', // city
+    '' // street
+  );
 
+  donorForm: FormGroup;
   formErrors = {
     firstName: '',
     lastName: '',
@@ -43,7 +55,11 @@ export class RegisterDonorComponent implements OnInit {
     bloodGroup: {required: 'Blood group is required.'}
   };
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MdDialogRef<RegisterDonorComponent>) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private donorService: DonorService,
+    public dialogRef: MdDialogRef<RegisterDonorComponent>
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -51,7 +67,9 @@ export class RegisterDonorComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.donor = this.donorForm.value;
+    this.donorService.createOrUpdate(this.prepareDonorForSave()).then((persistedDonor) => {
+      this.donor = persistedDonor;
+    });
   }
 
   buildForm(): void {
@@ -73,6 +91,13 @@ export class RegisterDonorComponent implements OnInit {
     this.onValueChanged(); // (re)set validation messages now
   }
 
+  prepareDonorForSave(): Donor {
+    const formModel = this.donorForm.value;
+
+    // add IP data
+    return formModel;
+  }
+
   onValueChanged(data?: any) {
     if (!this.donorForm) {
       return;
@@ -89,5 +114,9 @@ export class RegisterDonorComponent implements OnInit {
         });
       }
     });
+  }
+
+  createUpdateLink(id) {
+    return `${window.location.protocol}//${window.location.host}/#/donor/${id}`;
   }
 }
