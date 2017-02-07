@@ -50,15 +50,4 @@ export class ModelEventService {
     const currentIndex = this.modelList.findIndex(({ id }) => (id === modelData.id));
     this.modelList.splice(currentIndex, 1);
   }
-
-  // TODO: when needed add this
-  // public create(modelData) {
-  //   return this.http.post(this.modelUrl, JSON.stringify(modelData))
-  //     .map((response) => response.json());
-  // }
-  //
-  // public delete(id) {
-  //   return this.http.delete(`${this.modelUrl}/${id}`)
-  //     .map((response) => response.json());
-  // }
 }
