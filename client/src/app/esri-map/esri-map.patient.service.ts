@@ -15,6 +15,11 @@ export class PatientMapService extends AbstractMapService {
     this.initReverseLocator(mapComponent);
     this.addMapWidgets(mapComponent);
     this.addDetailsPopupAction(mapComponent);
+
+    mapComponent.mapView.on('click', (event) => {
+      console.log(event);
+      mapComponent.mapView.popup.open({ title: 'Help!', content: 'Seriously' });
+    });
   }
 
   // TODO: this does not work for some unknown reason...
@@ -66,11 +71,10 @@ export class PatientMapService extends AbstractMapService {
     const csvLayer = new mapComponent.esriService.layers.CSVLayer({
       url: '/api/map/0/0/0.csv',
       popupTemplate: {
-        title: 'Info'
+        title: 'Info',
+        content: 'Hello'
       },
-      title: 'Donors',
-      longitudeField: 'longitude',
-      latitudeField: 'latitude'
+      title: 'Donors'
     });
 
     csvLayer.renderer = new mapComponent.esriService.renderers.SimpleRenderer({
