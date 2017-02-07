@@ -7,17 +7,8 @@ import { MdDialog } from '@angular/material';
   selector: 'app-donor',
   templateUrl: './donor.component.html'
 })
-export class DonorComponent implements OnInit {
-  currentDonor;
-
-  constructor(private activatedRoute: ActivatedRoute, private dialog: MdDialog) {}
-
-  ngOnInit() {
-    this.activatedRoute.params
-      .subscribe((params) => {
-        this.currentDonor = params['id'];
-      });
-  }
+export class DonorComponent {
+  constructor(private dialog: MdDialog) {}
 
   onMapEvent(eventData) {
     console.log(eventData);

@@ -46,6 +46,22 @@ function registerRestEndpoints(router, resourceName, modelName, modelFields, Mod
             models.map((persistedData => dbModelToRestModel(persistedData, modelFields)))
           );
         }).catch(R.partial(onCurrentModelObjectError, [response]));
+    })
+    // TODO: remove this afterwards
+    // Just for easy testing
+    .delete((_, response) => {
+      let toBeDeletedModels;
+      ModelObject.find()
+        .then((models) => {
+          toBeDeletedModels = models
+        })
+        .then(() => ModelObject.remove({}))
+        .then(() => {
+          response.json(
+            toBeDeletedModels.map((persistedData => dbModelToRestModel(persistedData, modelFields)))
+          );
+        })
+        .catch(R.partial(onCurrentModelObjectError, [response]))
     });
 
   router.route(`/${resourceName}/:id`)

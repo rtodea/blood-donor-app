@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { EsriMapModule } from './esri-map/esri-map.module';
 import { RegisterDonorComponent } from './register-donor/register-donor.component';
 import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.component';
+import { EditDonorComponent } from './edit-donor/edit-donor.component';
+import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.com
     DashboardComponent,
     PatientComponent,
     DonorComponent,
+    EditDonorComponent,
     RegisterDonorComponent,
   ],
   imports: [
@@ -45,7 +48,8 @@ import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.com
     SocketService,
     ModelEventService,
     ModelService,
-    DonorService
+    DonorService,
+    EditDonorResolver
   ],
   bootstrap: [AppComponent],
   entryComponents: [
