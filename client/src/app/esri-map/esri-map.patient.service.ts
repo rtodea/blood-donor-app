@@ -136,14 +136,21 @@ export class PatientMapService extends AbstractMapService {
       className: 'esri-icon-locked'
     };
 
+    const popup = mapComponent.mapView.popup;
     // Adds the action to the view's default popup.
-    mapComponent.mapView.popup.actions.push(moreDetailsAction);
+    popup.actions.push(moreDetailsAction);
 
     // event handler that fires each time an action is clicked
-    mapComponent.mapView.popup.on('trigger-action', (event) => {
+    popup.on('trigger-action', (event) => {
       /* If the zoom-out action is clicked, the following code executes  */
       if (event.action.id === 'details') {
-        mapComponent.onMapEvent.emit({ eventType: event.action.id });
+        const attributes = popup.viewModel.selectedFeature.attributes;
+        mapComponent.onMapEvent.emit(
+          {
+            eventType: event.action.id,
+            data: attributes
+          }
+        );
       }
     });
   }

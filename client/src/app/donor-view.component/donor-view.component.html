@@ -1,0 +1,9 @@
+<h1 md-dialog-title>{{ donor.firstName }} {{ donor.lastName }}</h1>
+<md-dialog-content>
+  <p>Blood Group: <strong>{{ donor.bloodGroup }}</strong></p>
+  <p>Contact Number: {{ donor.contactNo }}</p>
+  <p>Email: {{ donor.email }}</p>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button (click)="dialogRef.close()">Close</button>
+</md-dialog-actions>

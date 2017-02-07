@@ -11,7 +11,6 @@ export class DonorComponent {
   constructor(private dialog: MdDialog) {}
 
   onMapEvent(eventData) {
-    console.log(eventData);
     if (eventData.eventType === 'register') {
       this.openDialog(eventData);
     }

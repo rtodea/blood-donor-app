@@ -22,6 +22,7 @@ import { RegisterDonorComponent } from './register-donor/register-donor.componen
 import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.component';
 import { EditDonorComponent } from './edit-donor/edit-donor.component';
 import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
+import { DonorViewComponent } from './donor-view.component/donor-view.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
     DonorComponent,
     EditDonorComponent,
     RegisterDonorComponent,
+    DonorViewComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    UserTypeToggleComponent
+    UserTypeToggleComponent,
+    DonorViewComponent
   ]
 })
 export class AppModule { }
