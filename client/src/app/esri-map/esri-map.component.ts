@@ -61,7 +61,7 @@ function createPatientMap(mapComponent: EsriMapComponent) {
 
   initReverseLocator(mapComponent);
   addMapWidgets(mapComponent);
-  // addDetailsPopupAction(mapComponent);
+  addDetailsPopupAction(mapComponent);
 }
 
 // TODO: this does not work for some unknown reason...
@@ -113,8 +113,7 @@ function addCSVFeatureLayer(mapComponent) {
   const csvLayer = new mapComponent.esriService.layers.CSVLayer({
     url: '/api/map/dump',
     popupTemplate: {
-      title: 'Info',
-      content: '{mag} {type}'
+      title: 'Info'
     }
   });
 
