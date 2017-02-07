@@ -40,7 +40,7 @@ export class EsriMapComponent implements OnInit {
 
     this.initReverseLocator();
     this.addMapWidgets();
-    this.registerClickHandler();
+    this.addPopupTemplate();
   }
 
   // TODO: this does not work for some unknown reason...
@@ -130,17 +130,49 @@ export class EsriMapComponent implements OnInit {
     });
   }
 
-  registerClickHandler() {
+  addPopupTemplate() {
+    const locationDetails = { mapPoint: null, address: null };
+
     this.mapView.on('click', ({mapPoint}) => {
       this.locator.locationToAddress(mapPoint)
         .then((response) => {
-          this.mapView.popup.content = response.address.Match_addr;
-          this.onMapEvent.emit({eventType: 'click', address: response.address, mapPoint});
+          this.mapView.popup.open({
+            title: 'Set current location',
+            location: mapPoint,
+            content: response.address.Match_addr
+          });
+          // this.onMapEvent.emit({eventType: 'click', address: response.address, mapPoint});
+          locationDetails.mapPoint = mapPoint;
+          locationDetails.address = response.address;
         })
         .otherwise(() => {
-          this.mapView.popup.content = 'No address was found for this location';
-          this.onMapEvent.emit({eventType: 'click', mapPoint});
+          this.mapView.popup.open({
+            title: `Set current location to [Lon: ${mapPoint.longitude}, Lat: ${mapPoint.latitude}]`,
+            location: mapPoint,
+            content: 'No address was found for this location'
+          });
+          locationDetails.mapPoint = mapPoint;
+          locationDetails.address = null;
+          // this.onMapEvent.emit({eventType: 'click', mapPoint});
         });
+    });
+
+    const moreDetailsAction = {
+      // This text is displayed as a tool tip
+      title: 'Register',
+      id: 'register',
+      className: 'esri-icon-authorize'
+    };
+
+    // Adds the action to the view's default popup.
+    this.mapView.popup.actions.push(moreDetailsAction);
+
+    // event handler that fires each time an action is clicked
+    this.mapView.popup.on('trigger-action', (event) => {
+      /* If the zoom-out action is clicked, the following code executes  */
+      if (event.action.id === 'register') {
+        this.onMapEvent.emit({eventType: event.action.id, mapPoint: locationDetails.mapPoint, address: locationDetails.address });
+      }
     });
   }
 }

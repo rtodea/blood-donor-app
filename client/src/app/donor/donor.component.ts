@@ -21,7 +21,7 @@ export class DonorComponent implements OnInit {
 
   onMapEvent(eventData) {
     console.log(eventData);
-    if (eventData.eventType === 'click') {
+    if (eventData.eventType === 'register') {
       this.openDialog(eventData);
     }
   }
