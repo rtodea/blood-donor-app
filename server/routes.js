@@ -78,14 +78,17 @@ function registerRestEndpoints(router, resourceName, modelName, modelFields, Mod
         .catch(R.partial(onCurrentModelObjectError, [response]));
 
     })
-    .put(({ params, body }, response) => {
+    .put((request, response) => {
+      const { params, body } =  request;
       ModelObject.findOne({_id: params.id })
         .then((persistedData) => {
           if (persistedData === null) {
             response.status = 404;
             response.send({ message: 'Not found' });
           } else {
-            Object.assign(persistedData, R.pick([modelFields], body));
+            modelFields.forEach(field => {
+              persistedData[field] = body[field]; // because of proxied attributes
+            });
             return persistedData.save();
           }
         })

@@ -17,6 +17,7 @@ export class EditDonorComponent implements OnInit {
   updated = false;
   active = true;
   deleted = false;
+  locationChanged = false;
 
   editedDonorLocation;
   donor;
@@ -90,7 +91,7 @@ export class EditDonorComponent implements OnInit {
     const formModel = this.donorForm.value;
 
     // add IP data
-    return formModel;
+    return Object.assign({}, this.donor, formModel);
   }
 
   onValueChanged(data?: any) {
@@ -118,6 +119,17 @@ export class EditDonorComponent implements OnInit {
   }
 
   updateLocation(mapEvent) {
-    console.log(mapEvent);
+    const { longitude, latitude } = mapEvent.mapPoint;
+    this.donor.longitude = longitude;
+    this.donor.latitude = latitude;
+
+    if (mapEvent.address) {
+      const { Address, City, CountryCode } = mapEvent.address;
+      this.donor.street = Address;
+      this.donor.city = City;
+      this.donor.countryCode = CountryCode;
+    }
+
+    this.locationChanged = true;
   }
 }

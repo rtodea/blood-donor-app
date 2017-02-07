@@ -94,8 +94,8 @@ export class RegisterDonorComponent implements OnInit {
   prepareDonorForSave(): Donor {
     const formModel = this.donorForm.value;
 
-    // add IP data
-    return formModel;
+    // TODO: add IP data
+    return Object.assign({}, this.donor, formModel);
   }
 
   onValueChanged(data?: any) {
@@ -117,6 +117,6 @@ export class RegisterDonorComponent implements OnInit {
   }
 
   createUpdateLink(id) {
-    return `${window.location.protocol}//${window.location.host}/#/donor/${id}`;
+    return `${window.location.protocol}//${window.location.host}/#/donor/edit/${id}`;
   }
 }

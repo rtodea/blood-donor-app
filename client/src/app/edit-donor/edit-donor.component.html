@@ -4,15 +4,24 @@
       <div [hidden]="updated && !deleted">
         <h3>Donor Update Form</h3>
         <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onUpdate()">
-          <p>
-            Registered Location: [ Lon: {{ donor.longitude }}, Lat: {{ donor.latitude }} ]
-          </p>
-          <p *ngIf="!donor.street">
-            Could not determine address.
-          </p>
-          <p *ngIf="donor.street">
-            Address: {{ donor.street}}, {{ donor.city }}
-          </p>
+          <div>
+            <p>
+              Registered Location <strong [hidden]="!locationChanged">*</strong>
+              : [ Lon: {{ donor.longitude }}, Lat: {{ donor.latitude }} ]
+            </p>
+            <p *ngIf="!donor.street">
+              Could not determine address.
+            </p>
+            <p *ngIf="donor.street">
+              Address: {{ donor.street }}, {{ donor.city }}
+            </p>
+          </div>
+
+          <p>You can change the registered location:</p>
+          <ol>
+            <li>clicking on the map</li>
+            <li>pressing the register button <span class="esri-icon-authorize"></span></li>
+          </ol>
 
           <div class="form-group">
             <label for="firstName">First Name</label>
