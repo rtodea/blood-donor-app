@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RegisterDonorComponent } from '../register-donor/register-donor.component';
+import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
+import { DonorRegisterComponent } from '../donor-register/donor-register.component';
 
 @Component({
   selector: 'app-donor',
@@ -17,7 +16,7 @@ export class DonorComponent {
   }
 
   openDialog(eventData) {
-    const dialogRef = this.dialog.open(RegisterDonorComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(DonorRegisterComponent, { disableClose: true });
     const locatedData = eventData.address || {};
     Object.assign(dialogRef.componentInstance.donor, {
       street: locatedData.Address,

@@ -5,9 +5,9 @@ import { PatientComponent } from './patient/patient.component';
 import { DonorComponent } from './donor/donor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RegisterDonorComponent } from './register-donor/register-donor.component';
-import { EditDonorComponent } from './edit-donor/edit-donor.component';
-import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
+import { DonorEditResolver } from './donor-edit/donor-edit.resolver';
+import { DonorEditComponent } from './donor-edit/donor-edit.component';
+import { DonorRegisterComponent } from './donor-register/donor-register.component';
 
 const appRoutes: Routes = [
   {
@@ -20,14 +20,14 @@ const appRoutes: Routes = [
   },
   {
     path: 'donor/edit/:id',
-    component: EditDonorComponent,
+    component: DonorEditComponent,
     resolve: {
-      donor: EditDonorResolver
+      donor: DonorEditResolver
     }
   },
   {
     path: 'register',
-    component: RegisterDonorComponent
+    component: DonorRegisterComponent
   },
   {
     path: 'dashboard',

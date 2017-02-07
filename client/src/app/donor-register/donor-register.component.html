@@ -104,8 +104,7 @@
     <p>Thank you for registering as a donor!</p>
     <p>To update or delete your registration, please follow this link:
       <!-- TODO: fix me -->
-      <!--<a [routerLink]="['/donor', donor.id]">{{ createUpdateLink(donor.id) }}</a>.-->
-      {{ createUpdateLink(donor.id) }}
+      <a *ngIf="submitted" [routerLink]="['/donor/edit', donor.id]">{{ createUpdateLink(donor.id) }}</a>.
     </p>
     <button
       md-raised-button

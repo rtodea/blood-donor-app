@@ -18,11 +18,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EsriMapModule } from './esri-map/esri-map.module';
-import { RegisterDonorComponent } from './register-donor/register-donor.component';
+import { DonorRegisterComponent } from './donor-register/donor-register.component';
 import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.component';
-import { EditDonorComponent } from './edit-donor/edit-donor.component';
-import { EditDonorResolver } from './edit-donor/edit-donor.resolver';
+import { DonorEditComponent } from './donor-edit/donor-edit.component';
+import { DonorEditResolver } from './donor-edit/donor-edit.resolver';
 import { DonorViewComponent } from './donor-view.component/donor-view.component';
+import { DonorFormService } from './donor/donor-form.service';
 
 
 @NgModule({
@@ -33,8 +34,8 @@ import { DonorViewComponent } from './donor-view.component/donor-view.component'
     DashboardComponent,
     PatientComponent,
     DonorComponent,
-    EditDonorComponent,
-    RegisterDonorComponent,
+    DonorEditComponent,
+    DonorRegisterComponent,
     DonorViewComponent
   ],
   imports: [
@@ -51,7 +52,8 @@ import { DonorViewComponent } from './donor-view.component/donor-view.component'
     ModelEventService,
     ModelService,
     DonorService,
-    EditDonorResolver
+    DonorFormService,
+    DonorEditResolver
   ],
   bootstrap: [AppComponent],
   entryComponents: [

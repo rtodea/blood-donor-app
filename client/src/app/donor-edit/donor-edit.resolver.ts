@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { DonorService } from '../shared/donor.service';
 
 @Injectable()
-export class EditDonorResolver implements Resolve<any> {
+export class DonorEditResolver implements Resolve<any> {
   constructor(
     private donorService: DonorService,
   ) {}
