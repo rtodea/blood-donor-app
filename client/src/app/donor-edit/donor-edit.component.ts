@@ -68,4 +68,8 @@ export class DonorEditComponent implements OnInit {
 
     this.locationChanged = true;
   }
+
+  backToEditMode() {
+    this.updated = false;
+  }
 }

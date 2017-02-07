@@ -5,9 +5,17 @@
 /* ArcGIS Styles */
 @import '//js.arcgis.com/4.2/esri/css/main.css';
 
-
-body {
+html, body, .map {
+  height: 100%;
+  width: 100%;
   margin: 0;
+  padding: 0;
+}
+
+/* Taking care of typography */
+body,
+input.form-control,
+select.form-control {
   font-family: "Avenir Next W00", sans-serif;
 }
 
@@ -28,15 +36,6 @@ md-toolbar-row {
   color: white;
 }
 
-html, body, .map {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .fill-space {
   flex: 1 1 auto;
 }
-
-.map-col { padding: 0; }

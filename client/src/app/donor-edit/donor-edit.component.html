@@ -1,27 +1,32 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5 pt-5 pl-5 pl-5">
       <div [hidden]="updated && !deleted">
         <h3>Donor Update Form</h3>
         <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onUpdate()">
-          <div>
-            <p>
-              Registered Location <strong [hidden]="!locationChanged">*</strong>
-              : [ Lon: {{ donor.longitude }}, Lat: {{ donor.latitude }} ]
-            </p>
-            <p *ngIf="!donor.street">
-              Could not determine address.
-            </p>
-            <p *ngIf="donor.street">
-              Address: {{ donor.street }}, {{ donor.city }}
-            </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <p>Registered Location <strong [hidden]="!locationChanged">*</strong>:</p>
+                <ul>
+                  <li>Lon: {{ donor.longitude }}</li>
+                  <li>Lat: {{ donor.latitude }}</li>
+                </ul>
+                <p *ngIf="!donor.street">
+                  <em>Could not determine address.</em>
+                </p>
+                <div *ngIf="donor.street">
+                  <p>Address: {{ donor.street }}</p>
+                  <p>City: {{ donor.city }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p>You can change the registered location by clicking anywhere on the map and registering via
+                <span class="esri-icon-authorize"></span>
+              </p>
+            </div>
           </div>
-
-          <p>You can change the registered location:</p>
-          <ol>
-            <li>clicking on the map</li>
-            <li>pressing the register button <span class="esri-icon-authorize"></span></li>
-          </ol>
 
           <div class="form-group">
             <label for="firstName">First Name</label>
@@ -35,7 +40,6 @@
               {{ formErrors.firstName }}
             </div>
           </div>
-
 
           <div class="form-group">
             <label for="lastName">Last Name</label>
@@ -112,19 +116,15 @@
       </div>
       <div [hidden]="!updated">
         <p>Updated donor!</p>
-        <button md-raised-button>
-          Close
+        <button md-raised-button
+          (click)="backToEditMode()">
+          Back
         </button>
-      </div>
-      <div [hidden]="!deleted">
-        <p>Deleted donor {{donor.id}}!</p>
-        <p>This link will no longer be valid.</p>
-        <p>Thank you!</p>
       </div>
     </div>
     <app-esri-map
       [hidden]="deleted"
-      class="col-md-8"
+      class="col-md-7 p-0"
       (onMapEvent)="updateLocation($event)"
       [userType]="'donor'"
       [goTo]="editedDonorLocation">
