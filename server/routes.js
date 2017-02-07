@@ -1,4 +1,5 @@
 const R = require('ramda');
+const path = require('path')
 
 const ModelEvent = require('./models/model-event');
 
@@ -98,6 +99,14 @@ function registerRoutes(router, socket) {
 
   // TODO: add model routes
   registerRestEndpoints(router, 'model-event', ModelEvent.modelName, ['name'], ModelEvent, socket);
+
+  registerMapEndpoints(router);
+}
+
+function registerMapEndpoints(router) {
+  router.get('/map/dump', (_, res) => {
+    res.sendFile(path.join(__dirname, 'test/earthquake.csv'));
+  });
 }
 
 module.exports = registerRoutes;
