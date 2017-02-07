@@ -1,12 +1,22 @@
 const R = require('ramda');
-const path = require('path')
+const json2csv = require('json2csv');
 
 const ModelEvent = require('./models/model-event');
 const Donor = require('./models/donor');
+const DONOR_FIELDS = [
+  'firstName', 'lastName', 'contactNo', 'email', 'bloodGroup',
+  'longitude', 'latitude', 'ip', 'countryCode', 'street', 'city'
+];
 
 function dbModelToRestModel(persistedData, modelFields) {
   // We do not want the internals of MongoDB item to be exposed via REST endpoint
-  return R.assoc('id', persistedData._id, R.pick(modelFields, persistedData));
+  const restModel = {};
+  modelFields.forEach((field) => {
+    restModel[field] = persistedData[field];
+  });
+  restModel.id = persistedData._id;
+
+  return restModel;
 }
 
 function onModelObjectError(modelName, response, error) {
@@ -111,6 +121,21 @@ function registerRestEndpoints(router, resourceName, modelName, modelFields, Mod
     });
 }
 
+function registerMapEndpoints(router) {
+  console.log('Registering Custom Map Server: ', '/map/zoom/x/y.csv');
+  router.get('/map/:z/:x/:y.csv', (_, res) => {
+    res.set('Content-Type', 'text/csv');
+    Donor.find().then(persistedDonors => {
+      const csvFields = [].concat(DONOR_FIELDS, ['id']);
+      res.send(json2csv({
+        data: persistedDonors.map((persistedDonor) => dbModelToRestModel(persistedDonor, csvFields)),
+        fields: csvFields,
+        quotes: ''
+      }));
+    });
+  });
+}
+
 function registerRoutes(router, socket) {
   router.get('/', (_, res) => (res.json({message: 'API v1'})));
 
@@ -119,18 +144,9 @@ function registerRoutes(router, socket) {
   registerRestEndpoints(router, 'model-event', ModelEvent.modelName, ['name'], ModelEvent, socket);
 
   // TODO: think of a better way to define the model fields accessible via REST
-  registerRestEndpoints(router, 'donor', Donor.modelName, [
-    'firstName', 'lastName', 'contactNo', 'email', 'bloodGroup',
-    'longitude', 'latitude', 'ip', 'countryCode', 'street', 'city'
-  ], Donor, socket);
+  registerRestEndpoints(router, 'donor', Donor.modelName, DONOR_FIELDS, Donor, socket);
 
   registerMapEndpoints(router);
-}
-
-function registerMapEndpoints(router) {
-  router.get('/map/dump', (_, res) => {
-    res.sendFile(path.join(__dirname, 'test/earthquake.csv'));
-  });
 }
 
 module.exports = registerRoutes;

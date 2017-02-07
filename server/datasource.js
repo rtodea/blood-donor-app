@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+// Plug in NodeJS promise
+mongoose.Promise = global.Promise;
+
 const config = require('./config');
 
 const MONGOOSE_CONNECTED = 'connected';
