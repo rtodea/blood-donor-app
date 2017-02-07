@@ -15,11 +15,6 @@ export class PatientMapService extends AbstractMapService {
     this.initReverseLocator(mapComponent);
     this.addMapWidgets(mapComponent);
     this.addDetailsPopupAction(mapComponent);
-
-    mapComponent.mapView.on('click', (event) => {
-      console.log(event);
-      mapComponent.mapView.popup.open({ title: 'Help!', content: 'Seriously' });
-    });
   }
 
   // TODO: this does not work for some unknown reason...
@@ -66,14 +61,33 @@ export class PatientMapService extends AbstractMapService {
   mapComponent.map.add(layer);
 }
 
-// TODO: backup because the dynamic one above does not work
+  createPopupTemplate() {
+    return {
+      title: '{bloodGroup} Donor',
+      content: [{
+        type: 'fields',
+        fieldInfos: [{
+          fieldName: 'firstName',
+          label: 'First Name',
+          visible: true
+        }, {
+          fieldName: 'lastName',
+          label: 'Last Name',
+          visible: true
+        }, {
+          fieldName: 'city',
+          label: 'City',
+          visible: true,
+        }]
+      }]
+    };
+  }
+
+  // TODO: backup because the dynamic one above does not work
   addCSVFeatureLayer(mapComponent: EsriMapComponent) {
     const csvLayer = new mapComponent.esriService.layers.CSVLayer({
       url: '/api/map/0/0/0.csv',
-      popupTemplate: {
-        title: 'Info',
-        content: 'Hello'
-      },
+      popupTemplate: this.createPopupTemplate(),
       title: 'Donors'
     });
 
@@ -117,7 +131,7 @@ export class PatientMapService extends AbstractMapService {
   addDetailsPopupAction(mapComponent: EsriMapComponent) {
     const moreDetailsAction = {
       // This text is displayed as a tool tip
-      title: 'Details',
+      title: 'View Contact Info',
       id: 'details',
       className: 'esri-icon-locked'
     };
