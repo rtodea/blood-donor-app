@@ -19,6 +19,7 @@ export class EsriMapComponent implements OnInit {
   mapView: __esri.MapView;
   map: __esri.Map;
   locator: __esri.Locator;
+  mapService;
 
   constructor(
     public esriService: EsriService,
@@ -35,7 +36,12 @@ export class EsriMapComponent implements OnInit {
         patient: this.patientMapService
       };
 
-      mapServiceForUserType[this.userType].setup(this);
+      this.mapService = mapServiceForUserType[this.userType];
+      this.mapService.setup(this);
     });
+  }
+
+  reload() {
+    this.mapService.reload(this);
   }
 }

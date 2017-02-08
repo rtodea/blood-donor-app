@@ -83,8 +83,7 @@ export class PatientMapService extends AbstractMapService {
     };
   }
 
-  // TODO: backup because the dynamic one above does not work
-  addCSVFeatureLayer(mapComponent: EsriMapComponent) {
+  createCSVFeatureLayer(mapComponent) {
     const csvLayer = new mapComponent.esriService.layers.CSVLayer({
       url: '/api/map/0/0/0.csv',
       popupTemplate: this.createPopupTemplate(),
@@ -102,7 +101,12 @@ export class PatientMapService extends AbstractMapService {
       })
     });
 
-    mapComponent.map.add(csvLayer);
+    return csvLayer;
+  }
+
+  // TODO: backup because the dynamic one above does not work
+  addCSVFeatureLayer(mapComponent: EsriMapComponent) {
+    mapComponent.map.add(this.createCSVFeatureLayer(mapComponent));
   }
 
   initReverseLocator(mapComponent: EsriMapComponent) {
@@ -152,6 +156,16 @@ export class PatientMapService extends AbstractMapService {
           }
         );
       }
+    });
+  }
+
+  reload(mapComponent: EsriMapComponent) {
+    // TODO: find a better approach
+    // switch old layers with the new one
+    const layer = this.createCSVFeatureLayer(mapComponent);
+    layer.load().then(() => {
+      mapComponent.map.add(layer);
+      mapComponent.map.layers.removeAt(0);
     });
   }
 }
