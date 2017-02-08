@@ -3,7 +3,6 @@ const socketIo = require('socket.io');
 const SOCKET_CONNECT = 'connection';
 const SOCKET_DISCONNECT = 'disconnect';
 
-
 function registerHandlers(io) {
   // const ioNameSpace = io.of('/generic');
   io.on(SOCKET_CONNECT, (socket) => {
@@ -15,13 +14,11 @@ function registerHandlers(io) {
   });
 }
 
-
 function init(httpServer) {
   const io = socketIo(httpServer);
   registerHandlers(io);
   return io;
 }
-
 
 module.exports = {
   init

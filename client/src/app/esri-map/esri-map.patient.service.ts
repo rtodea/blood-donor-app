@@ -19,19 +19,19 @@ export class PatientMapService extends AbstractMapService {
 
   // TODO: this does not work for some unknown reason...
   addFeatureLayer(mapComponent: EsriMapComponent) {
-  const renderer = new mapComponent.esriService.renderers.SimpleRenderer({
-    symbol: new mapComponent.esriService.symbols.SimpleMarkerSymbol({
-      style: 'circle',
-      size: '20px',
-      color: '#673ab7',
-      outline: { // autocasts as new SimpleLineSymbol()
-        color: [255, 64, 0, 0.4], // autocasts as new Color()
-        width: 7
-      }
-    })
-  });
+    const renderer = new mapComponent.esriService.renderers.SimpleRenderer({
+      symbol: new mapComponent.esriService.symbols.SimpleMarkerSymbol({
+        style: 'circle',
+        size: '20px',
+        color: '#673ab7',
+        outline: { // autocasts as new SimpleLineSymbol()
+          color: [255, 64, 0, 0.4], // autocasts as new Color()
+          width: 7
+        }
+      })
+    });
 
-  const layer = new mapComponent.esriService.layers.FeatureLayer({
+    const layer = new mapComponent.esriService.layers.FeatureLayer({
       source: [
         {
           geometry: new mapComponent.esriService.geometry.Point({
@@ -55,8 +55,7 @@ export class PatientMapService extends AbstractMapService {
       },
       geometryType: 'point',
       renderer,
-    }
-  );
+    });
 
   mapComponent.map.add(layer);
 }

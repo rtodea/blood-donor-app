@@ -9,7 +9,6 @@ const dataSource = require('./datasource');
 const socketIo = require('./socket-io');
 const registerRoutes = require('./routes');
 
-
 class AppBackend {
 
   constructor() {
@@ -86,6 +85,5 @@ class AppBackend {
     });
   }
 }
-
 
 module.exports = AppBackend;

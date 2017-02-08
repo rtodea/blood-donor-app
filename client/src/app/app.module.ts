@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { SocketService } from './shared/socket.service';
-import { ModelEventService } from './shared/model-event.service';
 import { ModelService } from './shared/model.service';
 import { DonorService } from './shared/donor.service';
 
@@ -49,7 +48,6 @@ import { DonorFormService } from './donor/donor-form.service';
   ],
   providers: [
     SocketService,
-    ModelEventService,
     ModelService,
     DonorService,
     DonorFormService,

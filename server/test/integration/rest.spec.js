@@ -16,7 +16,7 @@ describe('REST Functionality', () => {
     })
   });
 
-  fdescribe('/api/donor', () => {
+  describe('/api/donor', () => {
     let createdDonorId;
 
     it('POST should create a Donor', (done) => {
@@ -24,8 +24,8 @@ describe('REST Functionality', () => {
         .send(createDonor())
         .expect(200)
         .then((response) => {
-          // console.log(response);
-          expect(response.body.id).toBeDefined();
+          createdDonorId = response.body.id;
+          expect(createdDonorId).toBeDefined();
           done();
         });
     });
