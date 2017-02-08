@@ -12,7 +12,8 @@
     "client-unit-test": "ng test",
     "client-pree2e": "webdriver-manager update --standalone false --gecko false",
     "client-e2e-test": "protractor config/protractor.conf.js",
-    "server-unit-test": "JASMINE_CONFIG_PATH=config/jasmine.server.unit.json jasmine"
+    "server-unit-test": "JASMINE_CONFIG_PATH=config/jasmine.server.unit.json jasmine",
+    "server-integration-test": "JASMINE_CONFIG_PATH=config/jasmine.server.integration.json $NODE_DEBUG jasmine"
   },
   "repository": {
     "type": "git",
@@ -80,6 +81,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
+    "supertest": "^3.0.0",
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
     "typescript": "~2.0.3"

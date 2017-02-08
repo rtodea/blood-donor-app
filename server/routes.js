@@ -14,7 +14,7 @@ function dbModelToRestModel(persistedData, modelFields) {
   modelFields.forEach((field) => {
     restModel[field] = persistedData[field];
   });
-  restModel.id = persistedData._id;
+  restModel.id = persistedData.id;
 
   return restModel;
 }
@@ -41,10 +41,11 @@ function registerRestEndpoints(router, resourceName, modelName, modelFields, Mod
   router.route(`/${resourceName}`)
     .post(({ body }, response) => {
       ModelObject.create(R.pick(modelFields, body)).then((persistedData) => {
-        console.debug(`${modelName} created: ${persistedData}`);
+        // console.log(`${modelName} created: ${persistedData}`);
         const restModel = dbModelToRestModel(persistedData, modelFields);
         response.json(restModel);
         // TODO: do not couple the socket here
+        // Find a more elegant way
         if (socket) { socket.emit('create', restModel); }
 
       }).catch(R.partial(onCurrentModelObjectError, [response]));
@@ -137,7 +138,9 @@ function registerMapEndpoints(router) {
 }
 
 function registerRoutes(router, socket) {
-  router.get('/', (_, res) => (res.json({message: 'API v1'})));
+  router.get('/', (_, res) => (res.json({
+    message: 'API v1', version: '1'
+  })));
 
   // TODO: add model routes
   // TODO: remove this
