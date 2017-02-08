@@ -20,6 +20,14 @@ const MONGOOSE_ERROR = 'error';
 // ];
 
 
+function closeConnection(connection, callback) {
+  connection.close(() => {
+    console.log('MongoDb: disconnected due to app being stopped');
+    callback();
+  });
+}
+
+
 function init() {
   const connection = mongoose.connection;
   [MONGOOSE_CONNECTED, MONGOOSE_DISCONNECTED, MONGOOSE_ERROR].forEach((event) => {
@@ -36,17 +44,9 @@ function init() {
 }
 
 
-function closeConnection(connection, callback) {
-  connection.close(() => {
-    console.log('MongoDb: disconnected due to app being stopped');
-    callback();
-  });
-}
-
-
-function logEvent(connection, eventName, details='') {
-  connection.on(eventName, () => {
-    console.log('MongoDb:', eventName, details )
+function logEvent(connection, eventName) {
+  connection.on(eventName, (details = '') => {
+    console.log('MongoDb:', eventName, details)
   });
 }
 
