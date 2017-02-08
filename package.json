@@ -20,6 +20,9 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/rtodea/blood-donor-app.git"
   },
+  "engines": {
+    "node" : ">=7.4.0"
+  },
   "keywords": [
     "angular2",
     "mongodb",
