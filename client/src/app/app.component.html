@@ -1,22 +1,23 @@
 <!-- Fix broken layout -->
-<!--<md-toolbar color="primary" class="">-->
-  <!--<span><md-icon>mood</md-icon></span>-->
-  <!--<span>{{title}}</span>-->
+<md-toolbar color="primary" class="">
+  <span>
+    <span>{{title}}</span>
+    <span><md-icon>mood</md-icon></span>
+  </span>
 
-  <!--<span class="fill"></span>-->
-  <!--<button md-button routerLink="/dashboard">-->
-    <!--About-->
-  <!--</button>-->
-  <!--<button md-button routerLink="/patient">-->
-    <!--Patient-->
-  <!--</button>-->
-  <!--<button md-button routerLink="/donor">-->
-    <!--Donor-->
-  <!--</button>-->
-  <!--<button md-icon-button [md-menu-trigger-for]="menu">-->
-    <!--<md-icon>more_vert</md-icon>-->
-  <!--</button>-->
-<!--</md-toolbar>-->
+  <span>
+    <button md-button routerLink="/patient">
+      Search
+    </button>
+    <button md-button routerLink="/donor">
+      Register
+    </button>
+    <button md-button routerLink="/dashboard">
+      Info
+    </button>
+  </span>
+
+</md-toolbar>
 
 <!--<md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>-->
 <router-outlet></router-outlet>

@@ -18,4 +18,23 @@ export class AbstractMapService {
       center,
     });
   }
+
+  addMapWidgets(mapComponent) {
+    const searchWidget = new mapComponent.esriService.widgets.Search({view: mapComponent.mapView});
+
+    mapComponent.mapView.ui.add(searchWidget, {
+      position: 'bottom-left',
+      index: 1
+    });
+
+    const locateBtn = new mapComponent.esriService.widgets.Locate({view: mapComponent.mapView});
+
+    // Add the locate widget to the top left corner of the view
+    mapComponent.mapView.ui.add(locateBtn, {
+      position: 'bottom-left',
+      index: 0
+    });
+
+    mapComponent.mapView.ui.move(['zoom'], 'bottom-right');
+  }
 }

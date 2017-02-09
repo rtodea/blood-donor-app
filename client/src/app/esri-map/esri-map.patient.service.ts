@@ -114,23 +114,6 @@ export class PatientMapService extends AbstractMapService {
     });
   }
 
-  addMapWidgets(mapComponent: EsriMapComponent) {
-    const searchWidget = new mapComponent.esriService.widgets.Search({view: mapComponent.mapView});
-
-    mapComponent.mapView.ui.add(searchWidget, {
-      position: 'top-left',
-      index: 0
-    });
-
-    const locateBtn = new mapComponent.esriService.widgets.Locate({view: mapComponent.mapView});
-
-    // Add the locate widget to the top left corner of the view
-    mapComponent.mapView.ui.add(locateBtn, {
-      position: 'top-left',
-      index: 1
-    });
-  }
-
   addDetailsPopupAction(mapComponent: EsriMapComponent) {
     const moreDetailsAction = {
       // This text is displayed as a tool tip

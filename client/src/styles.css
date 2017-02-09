@@ -39,3 +39,8 @@ md-toolbar-row {
 .fill-space {
   flex: 1 1 auto;
 }
+
+md-toolbar {
+  position: absolute;
+  z-index: 1;
+}
