@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-5 pt-5 pl-5 pl-5">
-      <div [hidden]="updated && !deleted">
+    <div class="col-lg-5 pt-5 pl-5 pl-5">
+      <div class="update-form">
         <h3>Donor Update Form</h3>
         <form [formGroup]="donorForm"  *ngIf="active"  (ngSubmit)="onUpdate()">
           <div class="row">
@@ -114,17 +114,9 @@
           </button>
         </form>
       </div>
-      <div [hidden]="!updated">
-        <p>Updated donor!</p>
-        <button md-raised-button
-          (click)="backToEditMode()">
-          Back
-        </button>
-      </div>
     </div>
     <app-esri-map
-      [hidden]="deleted"
-      class="col-md-7 p-0"
+      class="col-lg-7 p-0"
       (onMapEvent)="updateLocation($event)"
       [userType]="'donor'"
       [goTo]="editedDonorLocation">

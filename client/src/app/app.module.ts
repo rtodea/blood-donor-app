@@ -23,6 +23,9 @@ import { DonorEditComponent } from './donor-edit/donor-edit.component';
 import { DonorEditResolver } from './donor-edit/donor-edit.resolver';
 import { DonorViewComponent } from './donor-view/donor-view.component';
 import { DonorFormService } from './donor/donor-form.service';
+import { DonorUpdatedComponent } from './donor-edit/donor-updated.component';
+import { DonorDeletedComponent } from './donor-edit/donor-deleted.component';
+import { DonorConfirmDeleteComponent } from './donor-edit/donor-confirm-delete.component';
 
 
 @NgModule({
@@ -33,9 +36,12 @@ import { DonorFormService } from './donor/donor-form.service';
     DashboardComponent,
     PatientComponent,
     DonorComponent,
-    DonorEditComponent,
     DonorRegisterComponent,
-    DonorViewComponent
+    DonorViewComponent,
+    DonorEditComponent,
+    DonorUpdatedComponent,
+    DonorConfirmDeleteComponent,
+    DonorDeletedComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,10 @@ import { DonorFormService } from './donor/donor-form.service';
   bootstrap: [AppComponent],
   entryComponents: [
     UserTypeToggleComponent,
-    DonorViewComponent
+    DonorViewComponent,
+    DonorUpdatedComponent,
+    DonorConfirmDeleteComponent,
+    DonorDeletedComponent
   ]
 })
 export class AppModule { }

@@ -4,6 +4,10 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DonorFormService } from '../donor/donor-form.service';
 import { DonorService } from '../shared/donor.service';
+import { MdDialog } from '@angular/material';
+import { DonorConfirmDeleteComponent } from './donor-confirm-delete.component';
+import { DonorDeletedComponent } from './donor-deleted.component';
+import { DonorUpdatedComponent } from './donor-updated.component';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +19,6 @@ export class DonorEditComponent implements OnInit {
   bloodGroups = DonorFormService.BLOOD_GROUPS;
 
   active = true;
-  deleted = false;
   editedDonorLocation;
   locationChanged = false;
   updated = false;
@@ -28,11 +31,17 @@ export class DonorEditComponent implements OnInit {
     private donorFormService: DonorFormService,
     private donorService: DonorService,
     private activatedRoute: ActivatedRoute,
+    private dialog: MdDialog
   ) {}
 
   deleteDonor(id) {
-    this.donorService.delete(id).then(() => {
-      this.deleted = true;
+    const ref = this.dialog.open(DonorConfirmDeleteComponent);
+    ref.afterClosed().subscribe((result) => {
+      if (result === 'delete') {
+        this.donorService.delete(id).then(() => {
+          this.dialog.open(DonorDeletedComponent, { disableClose: true });
+        });
+      }
     });
   }
 
@@ -51,6 +60,8 @@ export class DonorEditComponent implements OnInit {
         longitude: this.donor.longitude,
         latitude: this.donor.latitude
       };
+
+      this.dialog.open(DonorUpdatedComponent);
     });
   }
 
@@ -67,9 +78,5 @@ export class DonorEditComponent implements OnInit {
     }
 
     this.locationChanged = true;
-  }
-
-  backToEditMode() {
-    this.updated = false;
   }
 }

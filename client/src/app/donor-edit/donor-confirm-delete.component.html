@@ -1,0 +1,8 @@
+<h1 md-dialog-title>Confirm Delete</h1>
+<md-dialog-content>
+  <p>Are you sure you want to remove yourself from our data base and not be accessible by pacients in need?</p>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button (click)="dialogRef.close('delete')" color="primary">Delete</button>
+  <button md-raised-button (click)="dialogRef.close('cancel')" color="accent">Cancel</button>
+</md-dialog-actions>

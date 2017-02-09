@@ -44,3 +44,8 @@ md-toolbar {
   position: absolute;
   z-index: 1;
 }
+
+.update-form {
+  margin-top: 70px;
+  padding-right: 40px;
+}
