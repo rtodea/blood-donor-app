@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
 import ModelEvent from '../../models/model-event.model';

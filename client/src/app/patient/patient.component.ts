@@ -1,8 +1,8 @@
-import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SocketService } from '../shared/socket.service';
 import { MdSnackBar, MdDialog } from '@angular/material';
 import ModelEvent from '../../models/model-event.model';
-import { DonorViewComponent } from '../donor-view.component/donor-view.component';
+import { DonorViewComponent } from '../donor-view/donor-view.component';
 import { EsriMapComponent } from '../esri-map/esri-map.component';
 
 @Component({

@@ -21,7 +21,7 @@ import { DonorRegisterComponent } from './donor-register/donor-register.componen
 import { UserTypeToggleComponent } from './user-type-toggle/user-type-toggle.component';
 import { DonorEditComponent } from './donor-edit/donor-edit.component';
 import { DonorEditResolver } from './donor-edit/donor-edit.resolver';
-import { DonorViewComponent } from './donor-view.component/donor-view.component';
+import { DonorViewComponent } from './donor-view/donor-view.component';
 import { DonorFormService } from './donor/donor-form.service';
 
 
