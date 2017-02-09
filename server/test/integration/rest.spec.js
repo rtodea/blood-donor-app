@@ -1,7 +1,4 @@
-const request = require('supertest');
-require('dotenv').config({silent: true});
-
-const AppBackend = require('../../index');
+const { createDonor, createServer } = require('./common');
 const server = createServer();
 
 describe('REST Functionality', () => {
@@ -60,32 +57,3 @@ describe('REST Functionality', () => {
     });
   })
 });
-
-function createDonor(emptierDonor = {}) {
-  const fullDonor = {
-    firstName: 'John',
-    lastName: 'Doe',
-    contactNo: '+40721231411',
-    email: 'john.doe@acme.com',
-    bloodGroup: 'O+',
-
-    latitude: 45.75372,
-    longitude: 21.22571,
-
-    ip: '',
-    countryCode: 'ROU',
-    street: 'Piata Victoriei',
-    city: 'Timisoara'
-  };
-
-  return Object.assign({}, fullDonor, emptierDonor);
-}
-
-function createServer() {
-  if (process.env.TEST_SERVER_URL) {
-    return request.agent(process.env.TEST_SERVER_URL);
-  }
-
-  const appBackend = new AppBackend();
-  return request(appBackend._app);
-}
