@@ -54,21 +54,22 @@ server-integration-test
 
 The technology stack is comprised of:
 
-* [MongoDB](https://www.mongodb.com/download-center#community): 3.4.2
-* [mongoosejs](http://mongoosejs.com/):  4.8.1
-* [Expressjs](http://expressjs.com/): 4.14.1
-* [Angular2](https://angular.io/) (a.k.a Angular): 2.3.1
-* [Angular CLI](https://cli.angular.io/): 1.0.0-beta.30 --- used to init the project
-* [Angular Material](https://material.angular.io/components)
-* [NodeJS](https://nodejs.org/en/): 7.5.0
-* [socket.io](http://socket.io/): 1.4.5
-* [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/latest/guide/index.html): 4.2
+* [MongoDB](https://www.mongodb.com/download-center#community): 3.4.2 --- used to store the donor information
+* [mongoosejs](http://mongoosejs.com/):  4.8.1 --- the JS port to use MongoDB
+* [Expressjs](http://expressjs.com/): 4.14.1 --- the server for providing the static assets and the data API in a REST or map friendly format
+* [Angular2](https://angular.io/) (a.k.a Angular): 2.3.1 --- `the` UI framework
+* [Angular CLI](https://cli.angular.io/): 1.0.0-beta.30 --- used to init the project and build components easily
+* [Angular Material](https://material.angular.io/components) --- a nice skin for the UI
+* [NodeJS](https://nodejs.org/en/): 7.5.0 --- the JS interpreter
+* [socket.io](http://socket.io/): 1.4.5 --- for making the patients see donor events (creation, deletion) in real-time via a open WebSocket
+* [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/latest/guide/index.html): 4.2 --- the JS API for working with maps (a la ESRI)
 
 ### Map Service
 
 The ArcGIS client needs data to consume.
+The base map is provided by default, but it needs pins representing donors on it.
 
-Data points are donors which have in their profile spatial
+The map features are donors which have in their profile spatial
 identification attributes (i.e. longitude, latitude)
  
 The ExpressJS HTTP server provides a minimal support in the form of
@@ -77,7 +78,7 @@ two endpoints:
 1. `api/map/0/0/0.csv`: serving a big CSV with all the feature
 1. `api/map/0/0/0.geojson`: serving a big GeoJSON with all the features
 
-The client consumes only the CSV data to display the points on the map.
+For now, the JS client consumes only the CSV data to display the points on the map.
 
 ### Challenges
 
